@@ -23,7 +23,4 @@ class AcumosAuthenticator(Authenticator):
         headers = {'Content-type': 'application/json'}
         response = requests.post(cds_url, data=data_json, headers=headers,auth=(cds_user, cds_password))
         json_data = json.loads(response.text)
-        if json_data.get('authToken')   :
-            return username
-        else:
-            return None
+        return username if json_data.get('authToken') else None
